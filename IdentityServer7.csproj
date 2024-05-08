@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <PackageOutputPath>$(SolutionDir)$(Configuration)</PackageOutputPath>
+    <PackageOutputPath>$(OutDir)</PackageOutputPath>
     <PackageId>Braspin.$(AssemblyName)</PackageId>
     <Company>Braspin</Company>
     <RepositoryType>git</RepositoryType>
@@ -14,6 +14,7 @@
     <Title>nuget.org</Title>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
