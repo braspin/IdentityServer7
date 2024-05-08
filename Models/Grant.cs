@@ -49,7 +49,7 @@ namespace IdentityServer7.Models
         /// <value>
         /// The creation time.
         /// </value>
-        public DateTime CreationTime { get; set; }
+        public DateTime? CreationTime { get; set; }
 
         /// <summary>
         /// Gets or sets the expiration.

@@ -175,9 +175,11 @@ namespace IdentityServer7.Services
                         Scopes = scopes
                     };
 
+                    DateTime creationTime = (DateTime) consent.CreationTime!;
+
                     if (client.ConsentLifetime.HasValue)
                     {
-                        consent.Expiration = consent.CreationTime.AddSeconds(client.ConsentLifetime.Value);
+                        consent.Expiration = creationTime.AddSeconds(client.ConsentLifetime.Value);
                     }
 
                     await UserConsentStore.StoreUserConsentAsync(consent);

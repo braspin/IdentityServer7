@@ -90,7 +90,7 @@ namespace IdentityServer7.Services
                         Description = x.Description,
                         Scopes = x.Scopes,
                         CreationTime = x.CreationTime,
-                        Expiration = x.CreationTime.AddSeconds(x.Lifetime)
+                        Expiration = ((DateTime) x.CreationTime!).AddSeconds(x.Lifetime)
                     });
 
                 consents = Join(consents, codes);
