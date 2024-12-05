@@ -713,7 +713,8 @@ namespace IdentityServer7.Validation
 
             var resourceValidationResult = await _resourceValidator.ValidateRequestedResourcesAsync(new ResourceValidationRequest { 
                 Client = _validatedRequest.Client,
-                Scopes = requestedScopes
+                Scopes = requestedScopes,
+                Parameters = parameters
             });
 
             if (!resourceValidationResult.Succeeded)

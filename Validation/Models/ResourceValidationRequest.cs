@@ -4,6 +4,7 @@
 
 using IdentityServer7.Models;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace IdentityServer7.Validation
 {
@@ -27,5 +28,10 @@ namespace IdentityServer7.Validation
         // /// </summary>
         //  todo: add back when we support resource indicators
         // public IEnumerable<string> ResourceIndicators { get; set; }
+
+        /// <summary>
+        /// The parameters values.
+        /// </summary>
+        public NameValueCollection Parameters { get; set; }
     }
 }
