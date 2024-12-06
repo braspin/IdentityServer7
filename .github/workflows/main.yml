@@ -68,5 +68,5 @@ jobs:
         asset_path: ${{ env.package_path }}
         asset_name: ${{ env.package_name }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.NUGET_PACKAGE_TOKEN }}
         asset_content_type: application/octet-stream
