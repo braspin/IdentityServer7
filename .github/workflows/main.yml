@@ -45,6 +45,7 @@ jobs:
     #Create release
     - name: Create Tag
       uses: actions/create-release@v1
+      id: create_release
       env:
         GITHUB_TOKEN: ${{ secrets.NUGET_PACKAGE_TOKEN }} 
       with:
