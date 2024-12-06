@@ -41,13 +41,12 @@ jobs:
     - name: Push package to GitHub packages 
       run: dotnet nuget push bin/Release/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
     #Create release
-    - name: Create Release
+    - name: Create Tag
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.NUGET_PACKAGE_TOKEN }} 
       with:
         tag_name: ${{ steps.gitversion.outputs.SemVer }}
-        release_name: Release ${{ steps.gitversion.outputs.SemVer }}
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
