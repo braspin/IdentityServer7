@@ -35,7 +35,7 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Build and Pack NuGet package
-      run: dotnet pack IdentityServer7.csproj -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
+      run: dotnet pack IdentityServer7.csproj -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release --output bin/Release
     - name: Upload NuGet package to GitHub
       uses: actions/upload-artifact@v4
       with:
@@ -55,7 +55,7 @@ jobs:
       run: dotnet nuget add source --username fegomes --password ${{ secrets.NUGET_PACKAGE_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/fegomes/index.json"
     - name: Push package to GitHub packages 
       if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only release if there has been a commit/version change  
-      run: dotnet nuget push bin/Release/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
+      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
     
     #Create release
     - name: Create Release
@@ -72,5 +72,5 @@ jobs:
       with:
         tag: ${{ needs.build.outputs.Version }}
         name: Release ${{ needs.build.outputs.Version }}
-        artifacts: "bin/Release/*"
+        artifacts: "nugetPackage/*"
         token: ${{ secrets.NUGET_PACKAGE_TOKEN }}
