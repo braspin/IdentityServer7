@@ -3,6 +3,8 @@ name: Action to build and publish the project as a nuget package to github packa
 on:
   push:
     branches: [main]
+    tags:
+      - '*'
       
 jobs:
   build:
@@ -48,3 +50,15 @@ jobs:
       with:
         tag_name: ${{ steps.gitversion.outputs.SemVer }}
         artifacts: "bin/Release/*.nupkg"
+    - name: Locate the package
+      id: locate_package
+      run: |
+          FILE=$(find bin/Release/ -type f -name "*.nupkg")
+          echo "package_path=$FILE" >> $GITHUB_ENV
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+        asset_path: ${{ env.package_path }}
+        asset_name: ${{ env.package_path | basename }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
