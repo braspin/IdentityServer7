@@ -47,10 +47,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.NUGET_PACKAGE_TOKEN }} 
       with:
         tag_name: ${{ steps.gitversion.outputs.SemVer }}
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: ${{ steps.gitversion.outputs.SemVer }}
-        name: Release ${{ steps.gitversion.outputs.SemVer }}
-        artifacts: "bin/Release/*"
-        token: ${{ secrets.NUGET_PACKAGE_TOKEN }}
+        artifacts: "bin/Release/*.nupkg"
